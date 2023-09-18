@@ -1,0 +1,75 @@
+
+body{
+    overflow-x: hidden;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 56px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.logo {
+    grid-area: 1 / 1 / 2 / 2;
+}
+.menu {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    display: inline;
+    padding: 10px;
+    position: absolute;
+}
+
+.menuicon {
+    height: 120px;
+    width: 120px;
+    background-color: #bbb;
+    background-image: url(https://www.roan.zip/static/media/logo-minimal.07d6b47bb83f9476da9a.webp);
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    border-radius: 50%;
+}
+
+
+.menuicon:hover .ullist li{
+    transition: transform 0.4s;
+}
+
+.menuicon .ullist li{
+    transition: transform 0.4s;
+    margin-top: 10px;
+    z-index: -1;
+    padding: 30px;
+    border-radius: 50%;
+    padding-right: 70px;
+
+}
+
+
+.menuicon:hover .ullist li:nth-child(1) {
+    transform:  rotate(100deg) translate(100px) rotate(-100deg);
+}
+.menuicon:hover .ullist li:nth-child(2) {
+    transform:  rotate(140deg) translate(100px) rotate(-140deg);
+}
+.menuicon:hover .ullist li:nth-child(3) {
+    transform:  rotate(180deg) translate(100px) rotate(-180deg);
+}
+.menuicon:hover .ullist li:nth-child(4) {
+    transform:  rotate(220deg) translate(100px) rotate(-220deg);
+}
+.menuicon:hover .ullist li:nth-child(5) {
+    transform:  rotate(260deg) translate(100px) rotate(-260deg);
+    padding-bottom: 60px;
+}
