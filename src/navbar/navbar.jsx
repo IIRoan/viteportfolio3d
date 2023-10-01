@@ -5,7 +5,7 @@ function Navbar() {
     return (
         <>
             <div className={Navstyles.parent}>
-                <div className={Navstyles.logo}> <a>Logo</a> </div>
+                <div className={Navstyles.logo}> <img src='./logo.png' /> </div>
                 <div className={Navstyles.menu}>
                     
                     <a className={Navstyles.menuicon}>

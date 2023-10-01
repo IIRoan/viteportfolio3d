@@ -29,7 +29,9 @@
     font-size: 48px;
 }
 
-
+.svg{
+    color: green($color: #000000);
+}
 
 .leftbottom{
 
@@ -43,6 +45,8 @@
 
 .rightsection {
     grid-area: 2 / 2 / 3 / 3;
+    height: 500px;
+    padding-right: 100px;
 }
 
 //triangle

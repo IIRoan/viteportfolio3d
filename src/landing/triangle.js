@@ -1,50 +1,48 @@
 // triangle.js
 
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { MathUtils } from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 export function createTriangle(targetDivId) {
   const targetDiv = document.getElementById(targetDivId);
-  
-  // Create a scene
+
   const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, targetDiv.clientWidth / targetDiv.clientHeight);
+  camera.position.z = 100;
+  camera.position.y = 40;
+  camera.position.x = 0;
   
-  // Create a camera
-  const camera = new THREE.PerspectiveCamera(75, targetDiv.clientWidth / targetDiv.clientHeight, 0.1, 1000);
-  camera.position.z = 5;
-  
-  // Create a renderer
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(targetDiv.clientWidth, targetDiv.clientHeight);
-  
-  // Add the renderer to the target div
   targetDiv.appendChild(renderer.domElement);
-  
-  // Create a geometry for the triangle
-  const geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array([
-    -1, -1, 0,
-    1, -1, 0,
-    0, 1, 0
-  ]);
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setIndex([0, 1, 2]);
-  
-  
-  // Create a material for the triangle
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  
-  // Create a mesh with the geometry and material
-  const triangle = new THREE.Mesh(geometry, material);
-  
-  // Add the triangle to the scene
-  scene.add(triangle);
-  
-  // Render the scene with the camera
-  function animate() {
-    requestAnimationFrame(animate);
-    triangle.rotation.x += 0.01;
-    triangle.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  }
+
+  const loader = new GLTFLoader();
+  let model1, model2;
+
+  loader.load('./both.gltf', function (gltf) {
+    model1 = gltf.scene;
+    scene.add(model1);
+  }, undefined, function (error) {
+    console.error(error);
+  });
+
+  loader.load('./ring.gltf', function (gltf) {
+    model2 = gltf.scene;
+    scene.add(model2);
+  }, undefined, function (error) {
+    console.error(error);
+  });
+renderer.setClearColor(0xfcfbf8); // white
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true;
+controls.autoRotateSpeed = 5.0; // The higher the value, the faster the rotation
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
   animate();
 }
