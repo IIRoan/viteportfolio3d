@@ -1,14 +1,16 @@
 import Landingstyles from './landing.module.scss'
 import { useEffect } from 'react';
-import { initSTLViewer } from './stl_loader.js';
+import * as THREE from 'three'
+import { createTriangle } from './triangle.js';
+
 
 function Landing() {
+    
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        createTriangle('rightdivid');
+      });
 
-    useEffect(() => {
-        initSTLViewer('/model.stl', 'rightdivid');
-    }, []);
-    
-    
     return (
         <>
             <div className={Landingstyles.hero}>
@@ -29,11 +31,7 @@ function Landing() {
 
                 {/*Right section with*/}
 
-                <div id="rightdivid" className={Landingstyles.rightsection}>
-
-
-
-                </div>
+                <div id="rightdivid" className={Landingstyles.rightsection} ></div>
             </div>
         </>
     )
